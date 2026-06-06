@@ -1,1 +1,3 @@
-<Solution />
+<Solution>
+  <Project Path="InventorySystem.Domain/InventorySystem.Domain.csproj" />
+</Solution>
