@@ -7,8 +7,11 @@ namespace InventorySystem.Domain.Entities
 {
 	public class Purchase : BaseEntity
 	{
-		public long VendorId { get; private set; }
-		public DateTime PurchaseDate { get; private set; }
-		public long CreatedByUserId { get; private set; }
+		public DateTime PurchaseDate { get; set; } = DateTime.UtcNow;
+		public int VendorId { get; set; }
+		public Vendor? Vendor { get; set; }
+		public int UserId { get; set; }
+		public User? User { get; set; }
+		public ICollection<PurchaseItem> PurchaseItems { get; set; } = new List<PurchaseItem>();
 	}
 }
