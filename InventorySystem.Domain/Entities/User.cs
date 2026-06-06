@@ -13,6 +13,5 @@ namespace InventorySystem.Domain.Entities
 		public string MobileNumber { get; private set; } = string.Empty;
 		public Status Status { get; private set; } = Status.Active;
 		public string PasswordHash { get; private set; } = string.Empty;
-		public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
 	}
 }

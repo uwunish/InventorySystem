@@ -13,6 +13,5 @@ namespace InventorySystem.Domain.Entities
 		public Status Status { get; private set; }
 		public long CreatedByUserId { get; private set; }
 		public User CreatedByUser { get; private set; } = null!;
-		public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
 	}
 }
