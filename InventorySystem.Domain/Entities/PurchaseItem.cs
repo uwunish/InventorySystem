@@ -1,10 +1,11 @@
-﻿using System;
+﻿using InventorySystem.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace InventorySystem.Domain.Entities
 {
-    public class PurchaseItem
+    public class PurchaseItem : BaseEntity
     {
         public int PurchaseId { get; set; }
         public Purchase? Purchase { get; set; }

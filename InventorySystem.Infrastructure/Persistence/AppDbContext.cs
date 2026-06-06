@@ -26,6 +26,14 @@ namespace InventorySystem.Infrastructure.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
+            // Disable cascade delete globally — prevents multiple cascade path errors
+            // and protects against accidental mass deletion in production
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes()
+                .SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+
             modelBuilder.Entity<PurchaseItem>(entity =>
             {
                 entity.Property(e => e.Quantity)
