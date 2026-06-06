@@ -8,10 +8,10 @@ namespace InventorySystem.Domain.Entities
 {
 	public class User : BaseEntity
 	{
-		public string Name { get; private set; } = string.Empty;
-		public string Email { get; private set; } = string.Empty;
-		public string MobileNumber { get; private set; } = string.Empty;
-		public Status Status { get; private set; } = Status.Active;
-		public string PasswordHash { get; private set; } = string.Empty;
+		public string Name { get; set; } = string.Empty;
+		public string Email { get; set; } = string.Empty;
+		public string MobileNumber { get; set; } = string.Empty;
+		public Status Status { get; set; } = Status.Active;
+		public string PasswordHash { get; set; } = string.Empty;
 	}
 }

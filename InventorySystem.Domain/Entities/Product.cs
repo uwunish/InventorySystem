@@ -8,14 +8,14 @@ namespace InventorySystem.Domain.Entities
 {
 	public class Product : BaseEntity
 	{
-		public string Name { get; private set; } = string.Empty;
-		public string? Description { get; private set; }
-		public Status Status { get; private set; } = Status.Active;
-		public long ProductGroupId { get; private set; }
-		public long UnitOfMeasureId { get; private set; }
-		public long CreatedByUserId { get; private set; }
-		public ProductGroup ProductGroup { get; private set; }
-		public UnitOfMeasure UnitOfMeasure { get; private set; }
-		public User CreatedByUser { get; private set; }
+		public string Name { get; set; } = string.Empty;
+		public string? Description { get; set; }
+		public Status Status { get; set; } = Status.Active;
+		public int ProductGroupId { get; set; }
+		public ProductGroup? ProductGroup { get; set; }
+		public int UnitOfMeasureId { get; set; }
+		public UnitOfMeasure? UnitOfMeasure { get; set; }
+		public int UserId { get; set; }
+		public User? User { get; set; }
 	}
 }

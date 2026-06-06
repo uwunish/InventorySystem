@@ -6,7 +6,7 @@ namespace InventorySystem.Domain.Common
 {
 	public abstract class BaseEntity
 	{
-		public long Id { get; protected set; }
-		public DateTime CreatedAt { get; protected set; }
+		public int Id { get; set; }
+		public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 	}
 }

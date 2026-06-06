@@ -6,7 +6,7 @@ namespace InventorySystem.Domain.Enums
 {
 	public enum Status
 	{
-		Active,
-		Inactive
+		Inactive = 0,
+		Active = 1
 	}
 }
