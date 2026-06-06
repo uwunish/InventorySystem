@@ -4,7 +4,7 @@ using System.Text;
 
 namespace InventorySystem.Domain.Enums
 {
-	public enum UserStatus
+	public enum Status
 	{
 		Active,
 		Inactive
