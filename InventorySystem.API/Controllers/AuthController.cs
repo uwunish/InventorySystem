@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InventorySystem.API.Controllers
 {
-    public class AuthController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class AuthController : ControllerBase
     {
         private readonly LoginCommandHandler _loginHandler;
 
