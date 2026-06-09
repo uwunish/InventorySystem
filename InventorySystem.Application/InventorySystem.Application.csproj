@@ -16,4 +16,8 @@
     <ProjectReference Include="..\InventorySystem.Domain\InventorySystem.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\ProductGroups\Queries\" />
+  </ItemGroup>
+
 </Project>
