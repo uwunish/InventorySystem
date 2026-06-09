@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+  <span>Inventory System</span>
+  <span class="spacer"></span>
+
+  <a mat-button routerLink="/product-groups">Product Groups</a>
+  <a mat-button routerLink="/unit-of-measures">Units of Measure</a>
+  <a mat-button routerLink="/products">Products</a>
+
+  <button mat-icon-button [matMenuTriggerFor]="userMenu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #userMenu="matMenu">
+    <button mat-menu-item disabled>{{ currentUser?.name }}</button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon> Logout
+    </button>
+  </mat-menu>
+</mat-toolbar>
