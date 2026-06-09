@@ -1,0 +1,65 @@
+<div class="page-container">
+  <div class="page-header">
+    <h2>Products</h2>
+    <button mat-raised-button color="primary" (click)="navigateToCreate()">
+      <mat-icon>add</mat-icon> New Product
+    </button>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-message">Loading...</div>
+
+  <table mat-table [dataSource]="products" class="full-width"
+         *ngIf="!isLoading">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let row">{{ row.description }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="productGroup">
+      <th mat-header-cell *matHeaderCellDef>Product Group</th>
+      <td mat-cell *matCellDef="let row">{{ row.productGroupName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="unitOfMeasure">
+      <th mat-header-cell *matHeaderCellDef>Unit of Measure</th>
+      <td mat-cell *matCellDef="let row">{{ row.unitOfMeasureName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let row">
+        <mat-chip [color]="row.status === 1 ? 'primary' : 'warn'" highlighted>
+          {{ row.status === 1 ? 'Active' : 'Inactive' }}
+        </mat-chip>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button color="primary"
+                (click)="navigateToEdit(row.id)"
+                matTooltip="Edit">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="6"
+          style="padding: 16px; text-align: center">
+        No products found. Create your first one.
+      </td>
+    </tr>
+
+  </table>
+</div>

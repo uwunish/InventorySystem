@@ -1,0 +1,15 @@
+@use '../../../styles/shared' as *;
+
+.form-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  gap: 16px;
+  color: #666;
+}
