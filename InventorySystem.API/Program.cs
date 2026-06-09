@@ -19,7 +19,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("Angular", policy =>
     policy.WithOrigins(
-        "http://localhost:4200",
+        "http://localhost:4200"
         )
     .AllowAnyHeader()
     .AllowAnyMethod()
@@ -28,6 +28,8 @@ builder.Services.AddCors(options =>
 
 
 var app = builder.Build();
+
+await DatabaseSeeder.SeedAsync(app.Services);
 
 // Configure the HTTP request pipeline.
 if(app.Environment.IsDevelopment())

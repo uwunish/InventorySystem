@@ -57,18 +57,6 @@ namespace InventorySystem.Infrastructure.Persistence
                 entity.HasIndex(e => e.Email)
                 .IsUnique();
             });
-
-            modelBuilder.Entity<User>().HasData(new User
-            {
-                Id = 1,
-                Name = "Admin",
-                Email = "admin@inventory.com",
-                MobileNumber = "0000000000",
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin@123"),
-                Status = Domain.Enums.Status.Active,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
-            });
         }
 
     }
