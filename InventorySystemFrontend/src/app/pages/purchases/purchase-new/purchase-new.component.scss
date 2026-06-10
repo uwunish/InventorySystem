@@ -1,0 +1,48 @@
+@use '../../../styles/shared' as *;
+
+.section-card {
+  margin-bottom: 24px;
+}
+
+.item-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.col-product {
+  flex: 2;
+  min-width: 200px;
+}
+
+.col-number {
+  flex: 1;
+  min-width: 120px;
+}
+
+.col-total {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 100px;
+  padding-top: 8px;
+
+  .label {
+    font-size: 12px;
+    color: #666;
+  }
+}
+
+.add-item-btn {
+  margin-top: 8px;
+}
+
+.grand-total {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  font-size: 18px;
+  padding: 8px 0;
+}
