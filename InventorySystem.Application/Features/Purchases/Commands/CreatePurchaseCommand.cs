@@ -69,7 +69,7 @@ namespace InventorySystem.Application.Features.Purchases.Commands
             };
 
             var created = await _repository.CreateAsync(purchase);
-            return Result<PurchaseDto>.Success(MapToDto(created));
+            return Result<PurchaseDto>.Success(MapToDtoPublic(created));
         }
 
         public static PurchaseDto MapToDtoPublic(Purchase p) => new()
