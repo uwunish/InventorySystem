@@ -1,0 +1,12 @@
+@use '../../../styles/shared' as *;
+
+.form-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.success-message {
+  color: #388e3c;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
