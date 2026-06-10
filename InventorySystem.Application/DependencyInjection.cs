@@ -1,12 +1,18 @@
 ﻿using InventorySystem.Application.Features.Auth.Commands;
+using InventorySystem.Application.Features.Customers.Commands;
+using InventorySystem.Application.Features.Customers.Queries;
 using InventorySystem.Application.Features.ProductGroups.Commands;
 using InventorySystem.Application.Features.ProductGroups.Queries;
 using InventorySystem.Application.Features.Products.Commands;
 using InventorySystem.Application.Features.Products.Queries;
+using InventorySystem.Application.Features.Purchases.Commands;
+using InventorySystem.Application.Features.Purchases.Queries;
 using InventorySystem.Application.Features.UnitOfMeasures.Commands;
 using InventorySystem.Application.Features.UnitOfMeasures.Queries;
 using InventorySystem.Application.Features.Users.Commands;
 using InventorySystem.Application.Features.Users.Queries;
+using InventorySystem.Application.Features.Vendors.Commands;
+using InventorySystem.Application.Features.Vendors.Queries;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -44,6 +50,23 @@ namespace InventorySystem.Application
             services.AddScoped<UpdateProductCommandHandler>();
             services.AddScoped<GetProductsQueryHandler>();
             services.AddScoped<GetProductByIdQueryHandler>();
+
+            // vendors
+            services.AddScoped<CreateVendorCommandHandler>();
+            services.AddScoped<UpdateVendorCommandHandler>();
+            services.AddScoped<GetVendorsQueryHandler>();
+            services.AddScoped<GetVendorByIdQueryHandler>();
+
+            // purchases
+            services.AddScoped<CreatePurchaseCommandHandler>();
+            services.AddScoped<GetPurchasesQueryHandler>();
+            services.AddScoped<GetPurchaseByIdQueryHandler>();
+
+            // customers
+            services.AddScoped<CreateCustomerCommandHandler>();
+            services.AddScoped<UpdateCustomerCommandHandler>();
+            services.AddScoped<GetCustomersQueryHandler>();
+            services.AddScoped<GetCustomerByIdQueryHandler>();
 
             return services;
         }
