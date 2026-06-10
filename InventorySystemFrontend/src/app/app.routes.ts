@@ -154,6 +154,32 @@ export const routes: Routes = [
         ]
       },
       {
+        path: 'sales',
+        children: [
+          {
+            path: '', loadComponent: () =>
+              import('./pages/sales/sale-list/sale-list.component')
+                .then(m => m.SaleListComponent)
+          },
+          {
+            path: 'new', loadComponent: () =>
+              import('./pages/sales/sale-new/sale-new.component')
+                .then(m => m.SaleNewComponent)
+          },
+          {
+            path: ':id', loadComponent: () =>
+              import('./pages/sales/sale-detail/sale-detail.component')
+                .then(m => m.SaleDetailComponent)
+          }
+        ]
+      },
+      {
+        path: 'stock',
+        loadComponent: () =>
+          import('./pages/stock/stock-list/stock-list.component')
+            .then(m => m.StockListComponent)
+      },
+      {
         path: 'users',
         children: [
           {
