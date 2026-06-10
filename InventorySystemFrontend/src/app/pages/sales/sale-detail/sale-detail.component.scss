@@ -1,0 +1,29 @@
+@use '../../../styles/shared' as *;
+
+.section-card {
+  margin-bottom: 24px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  padding: 8px 0;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .label {
+    font-size: 12px;
+    color: #666;
+    text-transform: uppercase;
+  }
+}
+
+.total {
+  font-size: 18px;
+  color: #388e3c;
+}

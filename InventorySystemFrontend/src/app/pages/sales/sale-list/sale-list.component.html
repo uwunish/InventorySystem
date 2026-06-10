@@ -1,1 +1,58 @@
-<p>sale-list works!</p>
+<div class="page-container">
+  <div class="page-header">
+    <h2>Sales</h2>
+    <button mat-raised-button color="primary" (click)="newSale()">
+      <mat-icon>add</mat-icon> New Sale
+    </button>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-message">Loading...</div>
+
+  <table mat-table [dataSource]="sales" class="full-width"
+         *ngIf="!isLoading">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>#</th>
+      <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="saleDate">
+      <th mat-header-cell *matHeaderCellDef>Date</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.saleDate | date:'mediumDate' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="customerName">
+      <th mat-header-cell *matHeaderCellDef>Customer</th>
+      <td mat-cell *matCellDef="let row">{{ row.customerName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalAmount">
+      <th mat-header-cell *matHeaderCellDef>Total Amount</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.totalAmount | number:'1.2-2' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdByName">
+      <th mat-header-cell *matHeaderCellDef>Sold By</th>
+      <td mat-cell *matCellDef="let row">{{ row.createdByName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button color="primary"
+                (click)="viewDetail(row.id)"
+                matTooltip="View Detail">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <!-- No Edit button — sales are immutable -->
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

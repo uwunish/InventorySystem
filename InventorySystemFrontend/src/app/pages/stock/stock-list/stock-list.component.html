@@ -1,1 +1,102 @@
-<p>stock-list works!</p>
+<div class="page-container">
+  <div class="page-header">
+    <h2>Current Stock</h2>
+    <button mat-stroked-button (click)="loadStock()">
+      <mat-icon>refresh</mat-icon> Refresh
+    </button>
+  </div>
+
+  <!-- Summary card -->
+  <mat-card class="summary-card" *ngIf="!isLoading">
+    <mat-card-content>
+      <div class="summary-grid">
+        <div class="summary-item">
+          <span class="label">Total Products</span>
+          <strong>{{ stockItems.length }}</strong>
+        </div>
+        <div class="summary-item">
+          <span class="label">Total Stock Value</span>
+          <strong class="total-value">
+            {{ grandTotalValue | number:'1.2-2' }}
+          </strong>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div *ngIf="isLoading" class="loading-message">
+    Calculating stock...
+  </div>
+
+  <table mat-table [dataSource]="stockItems" class="full-width"
+         *ngIf="!isLoading">
+
+    <ng-container matColumnDef="productName">
+      <th mat-header-cell *matHeaderCellDef>Product</th>
+      <td mat-cell *matCellDef="let row">
+        <strong>{{ row.productName }}</strong>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="productGroupName">
+      <th mat-header-cell *matHeaderCellDef>Group</th>
+      <td mat-cell *matCellDef="let row">{{ row.productGroupName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="unitOfMeasure">
+      <th mat-header-cell *matHeaderCellDef>UoM</th>
+      <td mat-cell *matCellDef="let row">
+        <code>{{ row.unitOfMeasureCode }}</code>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalPurchased">
+      <th mat-header-cell *matHeaderCellDef>Purchased</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.totalPurchased | number:'1.2-4' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalSold">
+      <th mat-header-cell *matHeaderCellDef>Sold</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.totalSold | number:'1.2-4' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="stockQuantity">
+      <th mat-header-cell *matHeaderCellDef>In Stock</th>
+      <td mat-cell *matCellDef="let row">
+        <span [class.zero-stock]="row.stockQuantity <= 0"
+              [class.low-stock]="row.stockQuantity > 0 && row.stockQuantity < 10">
+          <strong>{{ row.stockQuantity | number:'1.2-4' }}</strong>
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="averageRate">
+      <th mat-header-cell *matHeaderCellDef>Avg Rate</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.averageRate | number:'1.2-4' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="stockValue">
+      <th mat-header-cell *matHeaderCellDef>Stock Value</th>
+      <td mat-cell *matCellDef="let row">
+        <strong>{{ row.stockValue | number:'1.2-2' }}</strong>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="8"
+          style="padding: 16px; text-align: center">
+        No stock data. Create some purchases first.
+      </td>
+    </tr>
+
+  </table>
+</div>

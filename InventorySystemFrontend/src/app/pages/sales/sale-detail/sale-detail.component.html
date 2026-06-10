@@ -1,1 +1,72 @@
-<p>sale-detail works!</p>
+<div class="page-container" *ngIf="sale">
+  <div class="page-header">
+    <h2>Sale #{{ sale.id }}</h2>
+    <button mat-stroked-button (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon> Back
+    </button>
+  </div>
+
+  <mat-card class="section-card">
+    <mat-card-content>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="label">Date</span>
+          <strong>{{ sale.saleDate | date:'medium' }}</strong>
+        </div>
+        <div class="info-item">
+          <span class="label">Customer</span>
+          <strong>{{ sale.customerName }}</strong>
+        </div>
+        <div class="info-item">
+          <span class="label">Sold By</span>
+          <strong>{{ sale.createdByName }}</strong>
+        </div>
+        <div class="info-item">
+          <span class="label">Total Amount</span>
+          <strong class="total">
+            {{ sale.totalAmount | number:'1.2-2' }}
+          </strong>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Items</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <table mat-table [dataSource]="sale.items" class="full-width">
+
+        <ng-container matColumnDef="productName">
+          <th mat-header-cell *matHeaderCellDef>Product</th>
+          <td mat-cell *matCellDef="let row">{{ row.productName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef>Quantity</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.quantity | number:'1.2-4' }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="salesPrice">
+          <th mat-header-cell *matHeaderCellDef>Sales Price</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.salesPrice | number:'1.2-2' }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lineTotal">
+          <th mat-header-cell *matHeaderCellDef>Line Total</th>
+          <td mat-cell *matCellDef="let row">
+            <strong>{{ row.lineTotal | number:'1.2-2' }}</strong>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>
