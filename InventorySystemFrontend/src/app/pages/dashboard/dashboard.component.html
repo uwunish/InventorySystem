@@ -1,0 +1,89 @@
+<div class="page-container">
+
+  <div class="welcome-header">
+    <h2>Welcome back, {{ currentUser?.name }}</h2>
+    <p>Here's a summary of your inventory system.</p>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-message">
+    Loading dashboard...
+  </div>
+
+  <div class="stats-grid" *ngIf="!isLoading">
+
+    <mat-card class="stat-card" (click)="navigate('/products')">
+      <mat-card-content>
+        <div class="stat-icon products">
+          <mat-icon>inventory_2</mat-icon>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">{{ stats.products }}</span>
+          <span class="stat-label">Products</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card" (click)="navigate('/purchases')">
+      <mat-card-content>
+        <div class="stat-icon purchases">
+          <mat-icon>shopping_cart</mat-icon>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">{{ stats.purchases }}</span>
+          <span class="stat-label">Purchases</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card" (click)="navigate('/sales')">
+      <mat-card-content>
+        <div class="stat-icon sales">
+          <mat-icon>point_of_sale</mat-icon>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">{{ stats.sales }}</span>
+          <span class="stat-label">Sales</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card" (click)="navigate('/stock')">
+      <mat-card-content>
+        <div class="stat-icon stock">
+          <mat-icon>account_balance_wallet</mat-icon>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">
+            {{ stats.stockValue | number:'1.2-2' }}
+          </span>
+          <span class="stat-label">Total Stock Value</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+
+  <!-- Quick links -->
+  <div class="quick-links" *ngIf="!isLoading">
+    <h3>Quick Actions</h3>
+    <div class="links-grid">
+      <button mat-stroked-button (click)="navigate('/purchases/new')">
+        <mat-icon>add_shopping_cart</mat-icon>
+        New Purchase
+      </button>
+      <button mat-stroked-button (click)="navigate('/sales/new')">
+        <mat-icon>add_box</mat-icon>
+        New Sale
+      </button>
+      <button mat-stroked-button (click)="navigate('/products/new')">
+        <mat-icon>add</mat-icon>
+        New Product
+      </button>
+      <button mat-stroked-button (click)="navigate('/stock')">
+        <mat-icon>inventory</mat-icon>
+        View Stock
+      </button>
+    </div>
+  </div>
+
+</div>
