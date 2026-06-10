@@ -1,25 +1,77 @@
-<mat-toolbar color="primary">
-  <span>Inventory System</span>
-  <span class="spacer"></span>
+<mat-toolbar color="primary" class="navbar">
 
-  <a mat-button routerLink="/product-groups">Product Groups</a>
-  <a mat-button routerLink="/unit-of-measures">Units of Measure</a>
-  <a mat-button routerLink="/products">Products</a>
-  <a mat-button routerLink="/vendors">Vendors</a>
-  <a mat-button routerLink="/purchases">Purchases</a>
-  <a mat-button routerLink="/customers">Customers</a>
-  <a mat-button routerLink="/sales">Sales</a>
-  <a mat-button routerLink="/stock">
-    <mat-icon>inventory</mat-icon> Stock
+  <!-- Brand -->
+  <a routerLink="/" class="brand">
+    <mat-icon>inventory</mat-icon>
+    <span>Inventory System</span>
   </a>
 
-  <button mat-icon-button [matMenuTriggerFor]="userMenu">
+  <span class="spacer"></span>
+
+  <!-- Products menu -->
+  <button mat-button [matMenuTriggerFor]="productsMenu">
+    Products <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+  <mat-menu #productsMenu="matMenu">
+    <a mat-menu-item routerLink="/products">
+      <mat-icon>inventory_2</mat-icon> Products
+    </a>
+    <a mat-menu-item routerLink="/product-groups">
+      <mat-icon>category</mat-icon> Product Groups
+    </a>
+    <a mat-menu-item routerLink="/unit-of-measures">
+      <mat-icon>straighten</mat-icon> Units of Measure
+    </a>
+  </mat-menu>
+
+  <!-- Transactions menu -->
+  <button mat-button [matMenuTriggerFor]="transactionsMenu">
+    Transactions <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+  <mat-menu #transactionsMenu="matMenu">
+    <a mat-menu-item routerLink="/purchases">
+      <mat-icon>shopping_cart</mat-icon> Purchases
+    </a>
+    <a mat-menu-item routerLink="/sales">
+      <mat-icon>point_of_sale</mat-icon> Sales
+    </a>
+  </mat-menu>
+
+  <!-- Master data menu -->
+  <button mat-button [matMenuTriggerFor]="masterMenu">
+    Master Data <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+  <mat-menu #masterMenu="matMenu">
+    <a mat-menu-item routerLink="/vendors">
+      <mat-icon>local_shipping</mat-icon> Vendors
+    </a>
+    <a mat-menu-item routerLink="/customers">
+      <mat-icon>people</mat-icon> Customers
+    </a>
+    <a mat-menu-item routerLink="/users">
+      <mat-icon>manage_accounts</mat-icon> Users
+    </a>
+  </mat-menu>
+
+  <!-- Stock — direct link, most important page -->
+  <a mat-button routerLink="/stock" routerLinkActive="active-link">
+    <mat-icon>warehouse</mat-icon> Stock
+  </a>
+
+  <!-- User account menu -->
+  <button mat-icon-button [matMenuTriggerFor]="userMenu"
+          class="user-button">
     <mat-icon>account_circle</mat-icon>
   </button>
   <mat-menu #userMenu="matMenu">
-    <button mat-menu-item disabled>{{ currentUser?.name }}</button>
+    <div class="user-info">
+      <strong>{{ currentUser?.name }}</strong>
+      <span>{{ currentUser?.email }}</span>
+    </div>
+    <mat-divider></mat-divider>
     <button mat-menu-item (click)="logout()">
-      <mat-icon>logout</mat-icon> Logout
+      <mat-icon>logout</mat-icon> Sign Out
     </button>
   </mat-menu>
+
 </mat-toolbar>
