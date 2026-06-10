@@ -199,8 +199,14 @@ export const routes: Routes = [
           }
         ]
       },
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./pages/dashboard/dashboard.component')
+            .then(m => m.DashboardComponent)
+      },
       // Default authenticated route
-      { path: '', redirectTo: 'product-groups', pathMatch: 'full' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 
       {
         path: '**', loadComponent: () =>
