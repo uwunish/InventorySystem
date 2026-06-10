@@ -50,5 +50,16 @@ namespace InventorySystem.Infrastructure.Repositories
             await _context.SaveChangesAsync();
             return user;
         }
+
+        public async Task UpdatePasswordAsync(int userId, string newPasswordHash)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user != null)
+            {
+                user.PasswordHash = newPasswordHash;
+                user.UpdatedAt = DateTime.UtcNow;
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

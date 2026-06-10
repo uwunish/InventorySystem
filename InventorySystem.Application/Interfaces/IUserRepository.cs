@@ -13,5 +13,6 @@ namespace InventorySystem.Application.Interfaces
         Task<User> CreateAsync(User user);
         Task<User> UpdateAsync(User user);
         Task<bool> EmailExistsAsync(string email);
+        Task UpdatePasswordAsync(int userId, string newPasswordHash);
     }
 }

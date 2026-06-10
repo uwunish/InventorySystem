@@ -14,17 +14,20 @@ namespace InventorySystem.API.Controllers
         private readonly UpdateUserCommandHandler _updateHandler;
         private readonly GetUsersQueryHandler _getUsersHandler;
         private readonly GetUserByIdQueryHandler _getUserByIdHandler;
+        private readonly ChangePasswordCommandHandler _changePasswordHandler;
 
         public UsersController(
             CreateUserCommandHandler createHandler,
             UpdateUserCommandHandler updateHandler,
             GetUsersQueryHandler getUsersHandler,
-            GetUserByIdQueryHandler getUserByIdHandler)
+            GetUserByIdQueryHandler getUserByIdHandler,
+            ChangePasswordCommandHandler changePasswordHandler)
         {
             _createHandler = createHandler;
             _updateHandler = updateHandler;
             _getUsersHandler = getUsersHandler;
             _getUserByIdHandler = getUserByIdHandler;
+            _changePasswordHandler = changePasswordHandler;
         }
 
         [HttpGet]
@@ -69,6 +72,17 @@ namespace InventorySystem.API.Controllers
                 return NotFound(new { message = result.Error });
 
             return Ok(result.Data);
+        }
+
+        [HttpPatch("{id}/change-password")]
+        public async Task<IActionResult> ChangePassword(int id,
+            [FromBody] ChangePasswordCommand command)
+        {
+            command.UserId = id;
+            var result = await _changePasswordHandler.Handle(command);
+            if (!result.Succeeded)
+                return NotFound(new { message = result.Error });
+            return Ok(new { message = "Password changed successfully." });
         }
     }
 }

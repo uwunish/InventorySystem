@@ -35,6 +35,7 @@ namespace InventorySystem.Application
             services.AddScoped<UpdateUserCommandHandler>();
             services.AddScoped<GetUsersQueryHandler>();
             services.AddScoped<GetUserByIdQueryHandler>();
+            services.AddScoped<ChangePasswordCommandHandler>();
 
             // product groups
             services.AddScoped<CreateProductGroupCommandHandler>();
