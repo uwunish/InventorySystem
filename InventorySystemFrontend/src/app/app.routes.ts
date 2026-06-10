@@ -64,6 +64,68 @@ export const routes: Routes = [
       }
     ]
   },
+  // Vendors
+  {
+    path: 'vendors', canActivate: [authGuard], children: [
+      {
+        path: '', loadComponent: () =>
+          import('./pages/vendors/vendor-list/vendor-list.component')
+            .then(m => m.VendorListComponent)
+      },
+      {
+        path: 'new', loadComponent: () =>
+          import('./pages/vendors/vendor-form/vendor-form.component')
+            .then(m => m.VendorFormComponent)
+      },
+      {
+        path: 'edit/:id', loadComponent: () =>
+          import('./pages/vendors/vendor-form/vendor-form.component')
+            .then(m => m.VendorFormComponent)
+      }
+    ]
+  },
+
+  // Customers
+  {
+    path: 'customers', canActivate: [authGuard], children: [
+      {
+        path: '', loadComponent: () =>
+          import('./pages/customers/customer-list/customer-list.component')
+            .then(m => m.CustomerListComponent)
+      },
+      {
+        path: 'new', loadComponent: () =>
+          import('./pages/customers/customer-form/customer-form.component')
+            .then(m => m.CustomerFormComponent)
+      },
+      {
+        path: 'edit/:id', loadComponent: () =>
+          import('./pages/customers/customer-form/customer-form.component')
+            .then(m => m.CustomerFormComponent)
+      }
+    ]
+  },
+
+  // Purchases
+  {
+    path: 'purchases', canActivate: [authGuard], children: [
+      {
+        path: '', loadComponent: () =>
+          import('./pages/purchases/purchase-list/purchase-list.component')
+            .then(m => m.PurchaseListComponent)
+      },
+      {
+        path: 'new', loadComponent: () =>
+          import('./pages/purchases/purchase-new/purchase-new.component')
+            .then(m => m.PurchaseNewComponent)
+      },
+      {
+        path: ':id', loadComponent: () =>
+          import('./pages/purchases/purchase-detail/purchase-detail.component')
+            .then(m => m.PurchaseDetailComponent)
+      }
+    ]
+  },
   {
     path: 'users', loadComponent: () =>
       import('./pages/users/user-list/user-list.component')
