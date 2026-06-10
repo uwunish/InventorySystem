@@ -7,12 +7,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { filter } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [CommonModule, RouterModule, MatToolbarModule,
-    MatButtonModule, MatIconModule, MatMenuModule],
+    MatButtonModule, MatIconModule, MatMenuModule, MatDividerModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
