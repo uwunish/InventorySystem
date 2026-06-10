@@ -45,7 +45,7 @@ export class LoginComponent {
     this.errorMessage = '';
 
     this.authService.login(this.loginForm.value).subscribe({
-      next: () => this.router.navigate(['/users']),
+      next: () => this.router.navigate(['/dashboard']),
       error: (err) => {
         this.errorMessage = err.error?.message || 'Login failed.';
         this.isLoading = false;
