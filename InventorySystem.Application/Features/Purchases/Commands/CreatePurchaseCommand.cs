@@ -72,7 +72,7 @@ namespace InventorySystem.Application.Features.Purchases.Commands
             return Result<PurchaseDto>.Success(MapToDto(created));
         }
 
-        private static PurchaseDto MapToDto(Purchase p) => new()
+        public static PurchaseDto MapToDtoPublic(Purchase p) => new()
         {
             Id = p.Id,
             PurchaseDate = p.PurchaseDate,
