@@ -32,6 +32,9 @@ namespace InventorySystem.Infrastructure
             services.AddScoped<IProductGroupRepository, ProductGroupRepository>();
             services.AddScoped<IUnitOfMeasureRepository, UnitOfMeasureRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IVendorRepository, VendorRepository>();
+            services.AddScoped<IPurchaseRepository, PurchaseRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
 
             // services
             services.AddScoped<IAuthService, AuthService>();
