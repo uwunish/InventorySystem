@@ -7,6 +7,9 @@ using InventorySystem.Application.Features.Products.Commands;
 using InventorySystem.Application.Features.Products.Queries;
 using InventorySystem.Application.Features.Purchases.Commands;
 using InventorySystem.Application.Features.Purchases.Queries;
+using InventorySystem.Application.Features.Sales.Commands;
+using InventorySystem.Application.Features.Sales.Queries;
+using InventorySystem.Application.Features.Stocks.Queries;
 using InventorySystem.Application.Features.UnitOfMeasures.Commands;
 using InventorySystem.Application.Features.UnitOfMeasures.Queries;
 using InventorySystem.Application.Features.Users.Commands;
@@ -67,6 +70,15 @@ namespace InventorySystem.Application
             services.AddScoped<UpdateCustomerCommandHandler>();
             services.AddScoped<GetCustomersQueryHandler>();
             services.AddScoped<GetCustomerByIdQueryHandler>();
+
+            // Sales
+            services.AddScoped<CreateSaleCommandHandler>();
+            services.AddScoped<GetSalesQueryHandler>();
+            services.AddScoped<GetSaleByIdQueryHandler>();
+            // No UpdateSaleCommandHandler — immutable by design
+
+            // Stock
+            services.AddScoped<GetCurrentStockQueryHandler>();
 
             return services;
         }

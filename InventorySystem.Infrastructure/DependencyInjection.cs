@@ -35,6 +35,8 @@ namespace InventorySystem.Infrastructure
             services.AddScoped<IVendorRepository, VendorRepository>();
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ISaleRepository, SaleRepository>();
+            services.AddScoped<IStockRepository, StockRepository>();
 
             // services
             services.AddScoped<IAuthService, AuthService>();
