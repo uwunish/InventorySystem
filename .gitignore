@@ -366,3 +366,9 @@ FodyWeavers.xsd
 **/appsettings.json
 **/appsettings.Development.json
 **/appsettings.Production.json
+
+# Configuration files
+InventorySystem.API/appsettings.json
+InventorySystem.API/appsettings.Development.json
+InventorySystem.API/appsettings.Production.json
+InventorySystem.API/appsettings*.json
