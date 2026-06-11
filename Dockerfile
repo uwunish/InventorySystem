@@ -1,31 +1,32 @@
-# Stage 1 — Build
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+# Build stage
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
-COPY InventorySystem.slnx .
-COPY InventorySystem.Domain/InventorySystem.Domain.csproj \
-     InventorySystem.Domain/
-COPY InventorySystem.Application/InventorySystem.Application.csproj \
-     InventorySystem.Application/
-COPY InventorySystem.Infrastructure/InventorySystem.Infrastructure.csproj \
-     InventorySystem.Infrastructure/
-COPY InventorySystem.API/InventorySystem.API.csproj \
-     InventorySystem.API/
+# Copy project files
+COPY ["InventorySystem.slnx", "."]
+COPY ["InventorySystem.API/InventorySystem.API.csproj", "InventorySystem.API/"]
+COPY ["InventorySystem.Application/InventorySystem.Application.csproj", "InventorySystem.Application/"]
+COPY ["InventorySystem.Domain/InventorySystem.Domain.csproj", "InventorySystem.Domain/"]
+COPY ["InventorySystem.Infrastructure/InventorySystem.Infrastructure.csproj", "InventorySystem.Infrastructure/"]
 
-RUN dotnet restore
+# Restore dependencies
+RUN dotnet restore "./InventorySystem.API/InventorySystem.API.csproj"
 
+# Copy source
 COPY . .
 
 WORKDIR /src/InventorySystem.API
-RUN dotnet publish -c Release -o /app/publish
 
-# Stage 2 — Runtime
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+# Publish
+RUN dotnet publish -c Release -o /app/publish --no-restore
+
+# Runtime stage
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
 WORKDIR /app
 
 COPY --from=build /app/publish .
 
-ENV ASPNETCORE_URLS=http://+:${PORT:-8080}
+ENV ASPNETCORE_URLS=http://+:8080
 ENV ASPNETCORE_ENVIRONMENT=Production
 
 ENTRYPOINT ["dotnet", "InventorySystem.API.dll"]
