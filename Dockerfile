@@ -3,7 +3,6 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0-nanoserver-ltsc2022 AS build
 WORKDIR /src
 
 # Copy solution and project files
-COPY InventorySystem.sln .
 COPY ["InventorySystem.API/InventorySystem.API.csproj", "InventorySystem.API/"]
 COPY ["InventorySystem.Application/InventorySystem.Application.csproj", "InventorySystem.Application/"]
 COPY ["InventorySystem.Domain/InventorySystem.Domain.csproj", "InventorySystem.Domain/"]
