@@ -20,6 +20,24 @@ namespace InventorySystem.Infrastructure
             IConfiguration configuration
             )
         {
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            var usePostgres = configuration.GetValue<bool>("UsePostgres");
+
+            if(usePostgres)
+            {
+                // production
+                services.AddDbContext<AppDbContext>(options =>
+                options.UseNpgsql(connectionString)
+                );
+            }
+            else
+            {
+                // local development
+                services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(connectionString)
+                    );
+            }
+
             // database
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(

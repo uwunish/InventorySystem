@@ -42,7 +42,9 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("Angular", policy =>
     policy.WithOrigins(
-        "http://localhost:4200"
+        "http://localhost:4200",
+        "https://inventorysystem-anishkoirala.netlify.app"
+
         )
     .AllowAnyHeader()
     .AllowAnyMethod()
@@ -52,10 +54,25 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+// Auto-migrate database on startup
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    try
+    {
+        db.Database.Migrate();
+        Console.WriteLine("Database migration completed successfully.");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Database migration failed: {ex.Message}");
+    }
+}
+
 await DatabaseSeeder.SeedAsync(app.Services);
 
 // Configure the HTTP request pipeline.
-if(app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
