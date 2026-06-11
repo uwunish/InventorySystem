@@ -38,13 +38,6 @@ namespace InventorySystem.Infrastructure
                     );
             }
 
-            // database
-            services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(
-                configuration.GetConnectionString("DefaultConnection")
-                )
-            );
-
             // repositories
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProductGroupRepository, ProductGroupRepository>();
