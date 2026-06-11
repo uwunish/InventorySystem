@@ -21,22 +21,11 @@ namespace InventorySystem.Infrastructure
             )
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
-            var usePostgres = configuration.GetValue<bool>("UsePostgres");
 
-            if(usePostgres)
-            {
-                // production
-                services.AddDbContext<AppDbContext>(options =>
-                options.UseNpgsql(connectionString)
+            // local development
+            services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlServer(connectionString)
                 );
-            }
-            else
-            {
-                // local development
-                services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(connectionString)
-                    );
-            }
 
             // repositories
             services.AddScoped<IUserRepository, UserRepository>();
