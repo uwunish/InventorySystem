@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SaleDto, CreateSaleRequest } from '../models/sale.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class SaleService {
-  private apiUrl = 'http://localhost:5000/api/sales';
+
+  private apiUrl = `${environment.apiUrl}/sales`;
 
   constructor(private http: HttpClient) { }
 

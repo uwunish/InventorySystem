@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
@@ -10,7 +10,7 @@ import { PurchaseService } from '../../services/purchase.service';
 import { SaleService } from '../../services/sale.service';
 import { StockService } from '../../services/stock.service';
 import { AuthService } from '../../services/auth.service';
-import { inject } from '@angular/core/primitives/di';
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +20,9 @@ import { inject } from '@angular/core/primitives/di';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  errorMessage = '';
+  private cdr = inject(ChangeDetectorRef);
+
   stats = {
     products: 0,
     purchases: 0,
@@ -50,8 +53,16 @@ export class DashboardComponent implements OnInit {
         this.stats.stockValue = stock.reduce(
           (sum, item) => sum + item.stockValue, 0);
         this.isLoading = false;
+        this.cdr.detectChanges();
       },
-      error: () => this.isLoading = false
+      error: (err) => {
+        console.error("Dashboard forkJoin error:", err);
+        this.errorMessage = err.status === 0
+          ? "Cannot reach the API. Is your backend running on port 5000?"
+          : `API error ${err.status}: ${err.error?.message || err.message}`;
+        this.isLoading = false;
+        this.cdr.detectChanges();
+      }
     });
   }
 

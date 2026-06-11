@@ -5,11 +5,17 @@
     <p>Here's a summary of your inventory system.</p>
   </div>
 
+  <!-- Error state -->
+  <div *ngIf="errorMessage" class="error-banner">
+    <mat-icon>error_outline</mat-icon>
+    <span>{{ errorMessage }}</span>
+  </div>
+
   <div *ngIf="isLoading" class="loading-message">
     Loading dashboard...
   </div>
 
-  <div class="stats-grid" *ngIf="!isLoading">
+  <div class="stats-grid" *ngIf="!isLoading && !errorMessage">
 
     <mat-card class="stat-card" (click)="navigate('/products')">
       <mat-card-content>
@@ -63,8 +69,7 @@
 
   </div>
 
-  <!-- Quick links -->
-  <div class="quick-links" *ngIf="!isLoading">
+  <div class="quick-links" *ngIf="!isLoading && !errorMessage">
     <h3>Quick Actions</h3>
     <div class="links-grid">
       <button mat-stroked-button (click)="navigate('/purchases/new')">

@@ -3,10 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UnitOfMeasure, CreateUnitOfMeasureRequest }
   from '../models/unit-of-measure.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class UnitOfMeasureService {
-  private apiUrl = 'http://localhost:5000/api/unitofmeasures';
+
+  private apiUrl = `${environment.apiUrl}/unitofmeasures`;
 
   constructor(private http: HttpClient) { }
 

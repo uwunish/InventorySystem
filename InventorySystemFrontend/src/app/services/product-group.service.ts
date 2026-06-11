@@ -3,10 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ProductGroup, CreateProductGroupRequest }
   from '../models/product-group.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ProductGroupService {
-  private apiUrl = 'http://localhost:5000/api/productgroups';
+
+  private apiUrl = `${environment.apiUrl}/productgroups`;
 
   constructor(private http: HttpClient) { }
 
