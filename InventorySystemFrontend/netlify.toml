@@ -1,0 +1,13 @@
+[
+build
+]
+  base = "InventorySystemFrontend"
+  command = "ng build --configuration production"
+  publish = "dist/InventorySystemFrontend/browser"
+
+[[
+redirects
+]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
